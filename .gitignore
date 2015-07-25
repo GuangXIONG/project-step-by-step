@@ -1,0 +1,7 @@
+*.pyc
+*.sqlite3
+/psbs/settings/local.py
+local.py
+.idea
+staticfiles
+mediafiles

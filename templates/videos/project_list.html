@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load future %}
+
+{% block title %}{% endblock %}
+
+<style>
+{% block style %}
+  #pj {
+    height: 320px;
+  }
+
+  #pg {
+    text-align: center;
+  }
+{% endblock %}
+</style>
+
+{% block content %}
+
+<div class='row'>
+  <div class='col-sm-4 col-sm-offset-4'>
+    <h1 id="pg">Project Gallery</h1>
+  </div>
+</div>
+
+  <div class="col-sm-12"><br/><hr/></div>
+
+<div class='row'>
+  {% for item in queryset %}
+    <div id="pj" class='col-sm-6'>
+      <a href='{{ item.get_absolute_url }}' class="lead">{{ item }}</a> <br/>
+      <a href='{{ item.get_absolute_url }}'>
+{#        <img src='{{ item.get_image_url }}' class='img-responsive' />#}
+        <img src='{{ item.get_image_url }}' style="width: 100%; height: 100%;" />
+      </a>
+    </div>
+    {% cycle '' '<div class="col-sm-12"><br/><br/><hr/></div>' %}
+
+    {% if forloop.counter|divisibleby:10 %}
+      </div><div class="row">
+    {% endif %}
+
+  {% endfor %}
+</div>
+
+{% endblock %}
